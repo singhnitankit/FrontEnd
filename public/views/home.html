@@ -1,0 +1,45 @@
+
+ <div class="btn-group" >
+  <input id="searchinput" type="search" placeholder="Search (by title, url or tag)" class="form-control" ng-model = "searchText" list="browsers">
+
+<datalist id="browsers">
+    <option ng-repeat="link in linksData">{{link.title}}</option>
+     <option ng-repeat="link in linksData">{{link.url_address}}</option>
+</datalist>
+</div>
+
+<div class="jumbotron" >
+    <div class="col-md-8">
+    <div ng-repeat="link in linksData | filter : searchText " >
+        
+          <div class="row">  
+
+    <!-- Your first column here -->
+               <div> <img src="{{link.favicon_image}}" alt="favicon_image"  height="64" width="64" class="img-circle">
+                 
+    <!-- Your second column here -->
+                   <p id="name">{{link.title}}</p>
+                <i class="fa fa-tag"></i> {{link.tag}} | 
+        <i class="fa fa-link"></i> <a href="{{link.url_address}}" target="_blank">{{link.url_address}}</a></p>
+                   <i class="glyphicon glyphicon-thumbs-up" ng-click = "like(link.id)"> {{likeCountById[link.id]}}</i></div></div>
+    </div></div>
+<div class="col-md-4">
+    <div class="row">
+        <h2>Contribute / Add website</h2>
+    </div>
+    <div class="row">
+        <input type="text" placeholder="title" class="form-control" ng-model="pushing.title">
+    </div>
+     <div class="row">
+        <input type="text" placeholder="web/url address" class="form-control" ng-model="pushing.url_address">
+    </div>
+     <div class="row">
+         <div class="col-md-6">
+             <input type="text" placeholder="tag" class="form-control" ng-model = "pushing.tag"></div>
+         <div class="col-md-6">
+             <button type="button" class="btn btn-info" ng-click = "pushingData()"><i class="fa fa-plus"></i> Push Website</button></div>
+         
+    </div>
+    </div>
+</div>
+    
